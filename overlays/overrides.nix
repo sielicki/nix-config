@@ -34,16 +34,9 @@ channels: final: prev: {
         });
     });
 
+  lispPackages.stumpwm = channels.latest.sbclPackages.stumpwm;
+  sbclPackages = channels.latest.sbclPackages;
   linuxPackages = channels.latest.linuxPackages;
-  lispPackages = channels.latest.lispPackages;
 
-  #lispPackages_new.sbclPackages = prev.lispPackages_new.sbclPackages.override
-  #  (old: {
-  #    overrides = prev.lib.composeExtensions (old.overrides or (_: _: { })) (f: p:
-  #      {
-  #        inherit (channels.latest.lispPackages_new.sbclPackages)
-  #          stumpwm
-  #          ;
-  #      });
-  #  });
+  services.xserver.windowManager.session.stumpwm = channels.latest.services.xserver.windowManager.session.stumpwm;
 }

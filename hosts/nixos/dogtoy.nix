@@ -6,16 +6,6 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "ahci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
-  boot.kernelPatches = [
-    {
-      name = "ps4-bootleg-controller";
-      patch = pkgs.fetchpatch {
-        name = "ps4-bootleg-controller";
-        url = "https://patchwork.kernel.org/project/linux-input/patch/20210113173402.17030-1-mironov.ivan@gmail.com/raw/";
-        sha256 = "sha256-FWYH1I987yHhi3GoT0EUV0gmcv8uM/UARyV9i9Csx3c=";
-      };
-    }
-  ];
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
@@ -63,33 +53,10 @@
   services.xserver.enable = true;
 
 
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  environment.gnome.excludePackages = (with pkgs; [
-    gnome-photos
-    gnome-tour
-    gnome-text-editor
-    gnome-console
-  ]) ++ (with pkgs.gnome; [
-    cheese # web cam tool
-    gnome-music
-    gnome-maps
-    gnome-terminal
-    gnome-contacts
-    gnome-calendar
-    gnome-weather
-    gedit # text editor
-    epiphany # web browser
-    geary # email reader
-    evince # document viewer
-    gnome-characters
-    totem # video player
-    tali # poker game
-    iagno # go game
-    hitori # sudoku game
-    atomix # puzzle game
-  ]);
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.windowManager.stumpwm = {
+    enable = true;
+  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -113,6 +80,7 @@
     firefox
     wget
     spotify
+    pkgs.linuxPackages_xanmod_latest.perf
   ];
   services.openssh.enable = true;
   networking.firewall.enable = false;
