@@ -20,6 +20,7 @@ channels: final: prev: {
     starship
     deploy-rs
     linuxPackages_xanmod_latest
+    emacsWithPackagesFromUsePackage
     ;
 
   haskellPackages = prev.haskellPackages.override

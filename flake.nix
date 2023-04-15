@@ -39,11 +39,9 @@
       emacs-overlay.url = "github:nix-community/emacs-overlay";
       emacs-overlay.inputs.nixpkgs.follows = "latest";
       emacs-overlay.inputs.flake-utils.follows = "flake-utils";
-      nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
-      nix-doom-emacs.inputs.nixpkgs.follows = "latest";
-      nix-doom-emacs.inputs.emacs-overlay.follows = "emacs-overlay";
-      nix-doom-emacs.inputs.flake-compat.follows = "flake-compat";
-      nix-doom-emacs.inputs.flake-utils.follows = "flake-utils";
+
+      nix-straight-el.url = "github:nix-community/nix-straight.el";
+      nix-straight-el.flake = false;
 
       digga.url = "github:divnix/digga";
       digga.inputs.nixpkgs.follows = "latest";
@@ -62,10 +60,10 @@
     , digga
     , emacs-overlay
     , home
-    , nix-doom-emacs
     , nixos
     , nixos-hardware
     , nixos-generators
+    , nix-straight-el
     , nixpkgs
     , wsl
     , ...
@@ -101,7 +99,7 @@
           })
 
           agenix.overlays.default
-          emacs-overlay.overlay
+          emacs-overlay.overlays.default
 
           (import ./pkgs)
         ];
@@ -175,7 +173,7 @@
 
         home = {
           imports = [ (digga.lib.importExportableModules ./users/modules) ];
-          modules = [ nix-doom-emacs.hmModule ];
+          modules = [ ];
           importables = rec {
             profiles = digga.lib.rakeLeaves ./users/profiles;
             suites = with profiles; rec {
