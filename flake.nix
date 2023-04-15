@@ -178,7 +178,7 @@
             profiles = digga.lib.rakeLeaves ./users/profiles;
             suites = with profiles; rec {
               base = [ core zsh git skim starship shellutils ];
-              heavy-base = [ emacs ];
+              heavy-base = [ emacs vscode ];
               devel = [ direnv git docs ];
               graphical = [ alacritty chat ];
             };
