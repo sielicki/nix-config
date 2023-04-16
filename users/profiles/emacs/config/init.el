@@ -80,15 +80,17 @@
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
-(use-package affe
-  :bind (("C-x C-f" . affe-find))
-  :demand t
-  :config
-  (defun affe-orderless-regexp-compiler (input _type _ignorecase)
-    (setq input (orderless-pattern-compiler input))
-    (cons input (apply-partially #'orderless--highlight input)))
-  (setq affe-regexp-compiler #'affe-orderless-regexp-compiler)
-  (consult-customize affe-grep :preview-key "M-."))
+
+;; april 2023: affe is brittle.
+;; (use-package affe
+;;   :bind (("C-x C-f" . affe-find))
+;;   :demand t
+;;   :config
+;;   (defun affe-orderless-regexp-compiler (input _type _ignorecase)
+;;     (setq input (orderless-pattern-compiler input))
+;;     (cons input (apply-partially #'orderless--highlight input)))
+;;   (setq affe-regexp-compiler #'affe-orderless-regexp-compiler)
+;;   (consult-customize affe-grep :preview-key "M-."))
 
 (use-package orderless
   :init
@@ -340,8 +342,10 @@
   :bind
   (:map projectile-mode-map
 	("C-c p" . projectile-command-map)
-	("C-c p s" . affe-grep)
-	("C-c p f" . affe-find)))
+	;;("C-c p s" . affe-grep)
+	;;("C-c p f" . affe-find)
+	)
+  )
 
 (use-package org
   :mode (("\\.org$" . org-mode))
