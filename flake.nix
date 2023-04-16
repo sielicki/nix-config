@@ -132,7 +132,7 @@
               hm-devel = [ users.personal-devel ];
               hm-heavy = [ users.personal-heavy ];
               base = [ core.nixos users.root ];
-              personal = [ cachix ];
+              personal = [ cachix networking.tailscale ];
               gaming = [ games.steam ];
               nvidia-offload = [ games.nvidia-offload ];
               wsl = [ core.wsl ];
@@ -149,7 +149,7 @@
               { lib.our = self.lib; }
               digga.darwinModules.nixConfig
               home.darwinModules.home-manager
-              agenix.nixosModules.age
+              agenix.darwinModules.age
             ];
           };
 
@@ -166,7 +166,7 @@
               hm-devel = [ users.personal-devel ];
               hm-heavy = [ users.personal-heavy ];
               base = [ core.darwin ];
-              personal = [ cachix users.personal-heavy ];
+              personal = [ cachix users.personal-heavy networking.tailscale ];
             };
           };
         };
