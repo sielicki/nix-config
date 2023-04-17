@@ -1,7 +1,7 @@
 { config, pkgs, suites, ... }:
 
 {
-  imports = with suites; base ++ personal ++ hm-heavy;
+  imports = with suites; base ++ personal ++ hm-heavy ++ yabai;
 
 
   nix.extraOptions = ''

@@ -166,6 +166,7 @@
               hm-devel = [ users.personal-devel ];
               hm-heavy = [ users.personal-heavy ];
               base = [ core.darwin ];
+              yabai = [ window-managers.yabai ];
               personal = [ cachix users.personal-heavy networking.tailscale ];
             };
           };
