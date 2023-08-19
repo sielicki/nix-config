@@ -155,7 +155,7 @@
 
           imports = [ (digga.lib.importHosts ./hosts/darwin) ];
           hosts = {
-            dogfruit = { /* configuration is in dogfruit.nix */ };
+            greydog = { /* configuration is in greydog.nix */ };
           };
           importables = rec {
             profiles = digga.lib.rakeLeaves ./profiles // {

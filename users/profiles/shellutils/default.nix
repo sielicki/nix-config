@@ -38,6 +38,7 @@
     pkgs.mosh
     pkgs.ripgrep
     pkgs.rsync
+    pkgs.tmux
     pkgs.tree
     pkgs.helix
     pkgs.ripgrep
